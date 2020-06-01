@@ -1,6 +1,6 @@
 # Docker-ELK-Filebeat
 
-A configuration lab for deploying Elastic-Logstash-Kibana on Docker
+A configuration lab for deploying Elastic-Logstash-Kibana with data collector Filebeat on Docker
 
 # Docker
 
