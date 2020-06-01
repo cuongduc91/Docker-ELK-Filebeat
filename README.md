@@ -20,3 +20,11 @@ Ports used for config. :
 - 5601: Kibana
 
 Type the localhost:5061 in the browser to go as an entry point to Kibana interface.
+
+## Kibana
+* Type the localhost:5061 in the browser to go as an entry point to Kibana interface.
+* For default the id and password corresponding to "elastic" and "password".
+* Remember to change reload in Kibana from default "last 15 minutes" to "Year to date" to observe the whole example .log data
+
+# Example .log
+The logs folder contains the example .log file.  
