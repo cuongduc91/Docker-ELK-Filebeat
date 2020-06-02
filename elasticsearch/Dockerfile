@@ -1,1 +1,2 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.8.9
+ARG D_VERSION
+FROM docker.elastic.co/elasticsearch/elasticsearch:${D_VERSION}

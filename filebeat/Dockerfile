@@ -1,2 +1,2 @@
-
-FROM docker.elastic.co/beats/filebeat:6.8.9
+ARG D_VERSION
+FROM docker.elastic.co/beats/filebeat:${D_VERSION}

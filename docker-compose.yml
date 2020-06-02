@@ -1,7 +1,10 @@
 version: "3"
 services:
   elasticsearch:
-    build: ./elasticsearch
+    build: 
+      context: elasticsearch/
+      args: 
+        D_VERSION: $D_VERSION
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
@@ -15,7 +18,10 @@ services:
       - elk
 
   logstash:
-    build: ./logstash
+    build: 
+      context: logstash/
+      args:
+        D_VERSION: $D_VERSION
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline:/usr/share/logstash/pipeline
@@ -29,7 +35,10 @@ services:
       - elasticsearch
 
   kibana:
-    build: ./kibana
+    build: 
+      context: kibana/
+      args: 
+        D_VERSION: $D_VERSION
     volumes:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
@@ -40,7 +49,10 @@ services:
       - elasticsearch
 
   filebeat:
-    build: ./filebeat
+    build: 
+      context: filebeat/
+      args: 
+        D_VERSION: $D_VERSION
     volumes:
       - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./logs:/var/log

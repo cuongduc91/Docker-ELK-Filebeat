@@ -20,7 +20,9 @@ Ports used for config. :
 - 5601: Kibana
 
 Type the localhost:5061 in the browser to go as an entry point to Kibana interface.
-
+## .env
+* Important is to declare the version in ELK and Filebeat in the .env with the environment variable, here in example is D_VERSION.
+* The version used in this platform is 6.8.9 
 ## Kibana
 * Type the localhost:5061 in the browser to go as an entry point to Kibana interface.
 * For default the id and password corresponding to "elastic" and "password".
