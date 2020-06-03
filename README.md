@@ -30,5 +30,3 @@ Type the localhost:5061 in the browser to go as an entry point to Kibana interfa
 
 ## Example .log
 The logs folder contains the example .log file.   
-
-## Read json log
