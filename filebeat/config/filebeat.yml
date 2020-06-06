@@ -1,23 +1,43 @@
-filebeat.inputs:
-  - type: log
-    enabled: true
-    paths:
-      - /var/log/sample.log
+# Read .log file
+
+# filebeat.inputs:
+#   - type: log
+#     enabled: true
+#     paths:
+#       - /var/log/*.log
+#     scan_frequency: 3s
+#     json.message_key: log
+#     json.keys_under_root: true
+#     json.add_error_keys: true
+
+# Read all docker log inputs even ELK
+
+# filebeat.inputs:
+#   - type: docker
+#     combine_partial: true
+#     containers:
+#       path: "/var/lib/docker/containers"
+#       stream: "stdout"
+#       ids:
+#         - "*"
+
+# Auto finding running docker containers except for ELK
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      templates:
+        - condition:
+            not:
+              contains:
+                docker.container.image: filebeat
+          config:
+            - type: docker
+              containers.ids:
+                - "${data.docker.container.id}"
+logging.metrics.enabled: false
 
 output.logstash:
-  enabled: true
+  # enabled: true
   hosts: ["logstash:5044"]
 
-# setup.template.name: "filebeat-"
-# setup.template.pattern: "filebeat-*"
-# setup.dashboards.enabled: true
 
-# setup.kibana:
-#   host: "http://kibana:5601"
-#   username: elastic
-#   password: password
-# output.elasticsearch:
-#   hosts: ["http://localhost:9200"]
-#   username: elastic
-#   password: password
-#   index: "filebeat-%{[beat.version]}-%{+yyyy.MM.dd}"

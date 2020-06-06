@@ -24,7 +24,7 @@ services:
         D_VERSION: $D_VERSION
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - 5044:5044
     environment:
@@ -53,9 +53,14 @@ services:
       context: filebeat/
       args: 
         D_VERSION: $D_VERSION
+    user: root
     volumes:
       - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      - ./logs:/var/log
+      # extra added
+      - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      # when exists .log file
+      # - ./jlogs:/var/log
     networks:
       - elk
     depends_on:
