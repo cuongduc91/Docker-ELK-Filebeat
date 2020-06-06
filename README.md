@@ -1,6 +1,6 @@
 # Docker-ELK-Filebeat
 
-A configuration lab for deploying Elastic-Logstash-Kibana with data collector Filebeat on Docker
+* A configuration lab for deploying Elastic-Logstash-Kibana with data collector Filebeat on Docker
 
 ## Docker
 
@@ -10,6 +10,9 @@ A configuration lab for deploying Elastic-Logstash-Kibana with data collector Fi
 ```
   docker-compose up
 ```
+## Filebeat
+* In the file filebeat.yml, there are codes for reading .log files and instant docker inputs 
+* The docker inputs are live-running containers except running ELK containers since they have been supported by Kibana
 
 ## ELK
 
@@ -22,7 +25,7 @@ Ports used for config. :
 Type the localhost:5061 in the browser to go as an entry point to Kibana interface.
 ### .env
 * Important is to declare the version in ELK and Filebeat in the .env with the environment variable, here in example is D_VERSION.
-* The version used in this platform is 6.8.9 
+* The version used in this platform is 7.7.1
 ### Kibana
 * Type the localhost:5061 in the browser to go as an entry point to Kibana interface.
 * For default the id and password corresponding to "elastic" and "password".
@@ -30,5 +33,3 @@ Type the localhost:5061 in the browser to go as an entry point to Kibana interfa
 
 ## Example .log
 The logs folder contains the example .log file.  
-
-## Read Json log
