@@ -1,5 +1,4 @@
 # Read .log file
-
 # filebeat.inputs:
 #   - type: log
 #     enabled: true
@@ -10,32 +9,28 @@
 #     json.keys_under_root: true
 #     json.add_error_keys: true
 
-# Read all docker log inputs even ELK
-
-# filebeat.inputs:
-#   - type: docker
-#     combine_partial: true
-#     containers:
-#       path: "/var/lib/docker/containers"
-#       stream: "stdout"
-#       ids:
-#         - "*"
-
-# Auto finding running docker containers except for ELK
-filebeat.autodiscover:
-  providers:
-    - type: docker
-      templates:
-        - condition:
-            not:
-              contains:
-                docker.container.image: filebeat
-          config:
-            - type: docker
-              containers.ids:
-                - "${data.docker.container.id}"
-logging.metrics.enabled: false
-
+# Automatic defind running containers also ELK container(s)
+# filebeat.autodiscover:
+#   providers:
+#     - type: docker
+#       templates:
+#         - condition:
+#             not:
+#               contains:
+#                 docker.container.image: filebeat
+#           config:
+#             - type: docker
+#               containers.ids:
+#                 - "${data.docker.container.id}"
+# logging.metrics.enabled: false
+filebeat.inputs:
+  - type: docker
+    scan_frequency: 3s
+    containers.ids:
+      # - "*"
+      # Examples of given running containers
+      - '7a9e14d9038174166e47eaa269685983e47204f943971f5ac2aa5119de975271'
+      - '80ef454d4967a8947b3f49e373a65cb9460cbd9dd09b1ba3c058aff1b0f057ba'
 output.logstash:
   # enabled: true
   hosts: ["logstash:5044"]
