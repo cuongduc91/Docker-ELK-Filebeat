@@ -13,7 +13,7 @@
 ## Filebeat
 * In the file filebeat.yml, there are codes for reading .log files and instant docker inputs 
 * The docker inputs are live-running containers except running ELK containers since they have been supported by Kibana
-
+* The filebeat.autodiscover mode can identify all running containers
 ## ELK
 
 Ports used for config. :
